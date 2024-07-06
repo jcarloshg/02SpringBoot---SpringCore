@@ -3,6 +3,12 @@ package com.springbootscore.springcore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+// @SpringBootApplication(
+// 	scanBasePackages = {
+// 		"com.springbootscore.springcore",
+// 		"until",
+// 	}
+// )
 @SpringBootApplication
 public class SpringcoreApplication {
 
