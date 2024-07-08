@@ -11,18 +11,40 @@ import com.springbootscore.springcore.common.Coach;
 public class DemoController {
 
     private Coach coach;
+    private Coach coach02;
 
     // ============================================================
     // >>> NOTE
     // @Qualifier notation has a higher level than @Primary notation
     // ============================================================
     // @Autowired
-    // public DemoController(@Qualifier("baseBall") Coach newCoach) {
-    //     coach = newCoach;
+    // public DemoController(@Qualifier("baseBallCoach") Coach newCoach) {
+    // System.out.println("In constructor of: " + getClass().getSimpleName());
+    // coach = newCoach;
     // }
+    // @Autowired
+    // public DemoController(Coach newCoach) {
+    // coach = newCoach;
+    // }
+
+    // ============================================================
+    // >>> NOTE
+    // By defect, singleton is used, so, <<newCoach>>, <<newCoach02>>
+    // will have the same instance.
+    // ============================================================
     @Autowired
-    public DemoController(Coach newCoach) {
+    public DemoController(
+            @Qualifier("baseBallCoach") Coach newCoach,
+            @Qualifier("baseBallCoach") Coach newCoach02) {
+        System.out.println("In constructor of: " + getClass().getSimpleName());
         coach = newCoach;
+        coach02 = newCoach02;
+    }
+
+    @GetMapping("/check")
+    public String areTheSame() {
+        // return "Are the same instances: " + coach.equals(coach02);
+        return "Are the same instances: " + (coach == coach02);
     }
 
     // ============================================================
